@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="wrap">
+			
+		</div>
+		<!--Demo1-->
+		<!--ReactDOM.render(
+			<h2>Hello World</h2>,
+			document.getElementById('wrap')
+		);-->
+		<!--Demo2-->
+		<!--var a = ['list1','list2','list3'];
+			ReactDOM.render(
+				<div>
+					{
+						a.map(function(name,index){
+							return <div key={index}>this is {name}</div>
+						})
+					}
+				</div>,
+				document.getElementById('wrap')
+			);-->
+		<!--Demo3-->
+		<!--var arr = [
+				<div key="1">hello</div>,
+				<div key="2">world</div>,
+			];
+			ReactDOM.render(
+				<div>{arr}</div>,
+				document.getElementById('wrap')
+			);-->
+		<!--Demo4-->
+		<!--var HelloMessage = React.createClass({
+				render: function(){
+					return <h1>Hello {this.props.name}</h1>;
+				}
+			});
+			ReactDOM.render(
+				<HelloMessage name="HipHop" />,
+				document.getElementById('wrap')
+			);-->
+		<!--Demo5-->
+		<!--var NodeList = React.createClass({
+				render:function(){
+					return(
+						<ol>
+							{
+								React.Children.map(this.props.children,function(child){
+									return <li>{child}</li>;
+								})
+							}
+						</ol>
+					);
+				}
+			});
+			ReactDOM.render(
+				<NodeList>
+					<p>ABCDEFG</p>
+					<p>ABCDEFG</p>
+					<p>ABCDEFG</p>
+				</NodeList>,
+				document.getElementById('wrap')
+			);-->
+			
+		<script src="js/react.js"></script>
+		<script src="js/react-dom.js"></script>
+		<script src="js/browser.min.js"></script>
+		<script type="text/babel">
+			var data = {
+				<li className="listOne">菜单一</li>
+				<li className="listTwo">菜单二</li>
+				<li className="listThree">菜单三</li>
+			};
+	        var MyTitle = React.createClass({
+		        propTypes: {
+		          title: React.PropTypes.string.isRequired,
+		        },
+		
+		        render: function() {
+		          return <h1> {this.props.title} </h1>;
+		        }
+		    });
+		
+		    ReactDOM.render(
+		        <MyTitle title={data} />,
+		        document.getElementById('wrap')
+		    );
+		</script>
+	</body>
+</html>
