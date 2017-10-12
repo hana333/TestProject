@@ -66,12 +66,7 @@
 				</NodeList>,
 				document.getElementById('wrap')
 			);-->
-			
-		<script src="js/react.js"></script>
-		<script src="js/react-dom.js"></script>
-		<script src="js/browser.min.js"></script>
-		<script type="text/babel">
-			var data = {
+			<!--var data = {
 				<li className="listOne">菜单一</li>
 				<li className="listTwo">菜单二</li>
 				<li className="listThree">菜单三</li>
@@ -89,7 +84,139 @@
 		    ReactDOM.render(
 		        <MyTitle title={data} />,
 		        document.getElementById('wrap')
+		    );-->
+		    <!--		//方法一
+		    	class Hello extends React.Component {
+	
+		  constructor(...args) {
+		  	super(...args);
+		    this.state = {
+		    	opacity: 1,
+		      fontSize: '20px'
+		    }
+		  }
+		
+		  render() {
+		    return <div style={{opacity: this.state.opacity, fontSize: this.state.fontSize}}>Hello {this.props.name}</div>;
+		  }
+		  componentDidMount(){
+		  	alert('弹框内容');
+		    var _self = this;
+		    window.setTimeout(function(){
+		    	_self.setState({
+		      	opacity:0.5,
+		        fontSize:'44px'
+		      });
+		    },1000);
+		    
+		  }
+		}
+		
+		ReactDOM.render(
+		  <Hello name="World" className="style"/>,
+		  document.getElementById('wrap')
+		);-->
+		    
+		<script src="js/react.js"></script>
+		<script src="js/react-dom.js"></script>
+		<script src="js/browser.min.js"></script>
+		<!--<script type="text/babel">
+		
+	
+		  var Hello2 = React.createClass({
+			
+		  getInitialState: function() {		//初始化
+		  	return ({
+		    	opacity: 1,
+		    	fontSize: '20px'
+		    });
+		  },
+		  
+		  render: function() {
+		  	return (
+			    <div 
+			    style={{
+			    	opacity: this.state.opacity, 
+			    	fontSize: this.state.fontSize
+			    }}>
+			    	Hello2 {this.props.name}
+			    </div>
 		    );
+		  },
+		  
+		  componentDidMount: function() {
+		  	alert('弹框内容');
+		    var _self = this;
+		    window.setTimeout(function(){
+		    	_self.setState({
+		      	opacity:0.5,
+		        fontSize:'44px'
+		      });
+		    },1000);
+		  }
+		  
+		});
+		
+		
+		
+		ReactDOM.render(
+		  <Hello2 name="World" className="style"/>,
+		  document.getElementById('wrap')
+		);
+		</script>-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+		<script type="text/jsx">
+			var TestClickComponent = React.createClass({
+				handleClick: function(event){
+					//var tipE = ReactDOM.findDOMNode(this.refs.tip);					
+					console.log(this.refs)
+					var tipE = this.refs.tip;
+					if(tipE.style.display === 'none'){
+						tipE.style.display = 'inline';
+					}else{
+						tipE.style.display = 'none';
+					}
+					//默认行为和冒泡
+					event.stopPropagation();
+					event.preventDefault();					
+				},
+				render:function(){
+					return(
+						<div>
+							<button onClick={this.handleClick}>显示|隐藏</button><span ref="tip">测试点击</span>
+						</div>
+					);
+				}
+			});
+			
+			var TestInputComponent = React.createClass({
+				getInitialState:function(){
+					return{
+						inputContent:''
+					}
+				},
+				changeHandler:function(event){
+					this.setState({
+						inputContent:event.target.value
+					});
+					
+					event.stopPropagation();
+					event.preventDefault();	
+				},
+				render:function(){
+					return(
+						<div>
+							<input type="text" onChange={this.changeHandler}/><span>{this.state.inputContent}</span>
+						</div>
+					);
+				}
+			});
+			 ReactDOM.render(
+				<div>
+					<TestClickComponent/><TestInputComponent/>
+				</div>,
+				document.getElementById('wrap')
+			);
 		</script>
 	</body>
 </html>
