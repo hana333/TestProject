@@ -120,7 +120,7 @@
 		<script src="js/react.js"></script>
 		<script src="js/react-dom.js"></script>
 		<script src="js/browser.min.js"></script>
-		<!--<script type="text/babel">
+		<script type="text/babel">
 		
 	
 		  var Hello2 = React.createClass({
@@ -163,60 +163,6 @@
 		  <Hello2 name="World" className="style"/>,
 		  document.getElementById('wrap')
 		);
-		</script>-->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
-		<script type="text/jsx">
-			var TestClickComponent = React.createClass({
-				handleClick: function(event){
-					//var tipE = ReactDOM.findDOMNode(this.refs.tip);					
-					console.log(this.refs)
-					var tipE = this.refs.tip;
-					if(tipE.style.display === 'none'){
-						tipE.style.display = 'inline';
-					}else{
-						tipE.style.display = 'none';
-					}
-					//默认行为和冒泡
-					event.stopPropagation();
-					event.preventDefault();					
-				},
-				render:function(){
-					return(
-						<div>
-							<button onClick={this.handleClick}>显示|隐藏</button><span ref="tip">测试点击</span>
-						</div>
-					);
-				}
-			});
-			
-			var TestInputComponent = React.createClass({
-				getInitialState:function(){
-					return{
-						inputContent:''
-					}
-				},
-				changeHandler:function(event){
-					this.setState({
-						inputContent:event.target.value
-					});
-					
-					event.stopPropagation();
-					event.preventDefault();	
-				},
-				render:function(){
-					return(
-						<div>
-							<input type="text" onChange={this.changeHandler}/><span>{this.state.inputContent}</span>
-						</div>
-					);
-				}
-			});
-			 ReactDOM.render(
-				<div>
-					<TestClickComponent/><TestInputComponent/>
-				</div>,
-				document.getElementById('wrap')
-			);
 		</script>
 	</body>
 </html>
